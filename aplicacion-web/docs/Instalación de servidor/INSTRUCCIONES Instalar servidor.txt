@@ -1,0 +1,24 @@
+1- Instalar XAMPP (xampp-windows-x64-7.2.15-2-VC15-installer) con PHP 7.2
+2- Descargar e instalar el composer https://getcomposer.org/download/
+3- Dirigirse a la carpeta xampp/htdocs desde el cmd y escribir 'composer create-project symfony/framework-standard-edition test'
+4- Eso hace Instalar Symfony (que funcione el primer proyecto test)
+5- Pegar el proyecto del servidor en la carpeta de XAMPP/htdocs
+6- Dirigirse a desde la terminal de windows a la carpeta donde está el proyecto (con cd)
+7- En la terminal ejecutar el comando 'composer install' en el directorio del proyecto
+8- Crear en phpmyadmin una base de datos llamada 'centapp' sin nada
+9- importar el archivo centapp.sql para que traiga todas las tablas y registros de la base de datos
+10- descargar el dbase.dll desde https://github.com/nufue/pecl-dbase-windows versión para PHP 7.2 TS de x86 (si no funciona probar con el de 64)
+11- pegarlo en la carpeta ext de php
+12- entrar a php.ini y agregar la linea de extension=dbase
+13- en caso de no funcionar agregar el gmp.dll en ext y extension=gmp en el php.ini
+14- crear una red lan entre el dispositivo movil y la pc, darle permisos públicos
+15- poner ipconfig en la terminal, la dirección ipv4 va a ser la url para acceder
+16- si no funciona desactivar el firewall
+
+https://www.phpcentral.com/pregunta/756/lectura-de-archivo-dbf-con-extension-dbase-en-php
+http://www.rephp.com/instalacion-de-la-extension-dbase-en-xampp.html
+https://stackoverflow.com/questions/24953910/installing-dbase-extension-in-xampp
+https://stackoverflow.com/questions/33160343/did-not-found-php-7-dbase
+
+admin - 1234
+empleado - pass

@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{%  block title%}Nuevo anuncio{% endblock %}
+{% block body %}
+  <script>
+  function enviar(){    
+    $("#btn-enviar").html('Creando');
+    $("#btn-enviar").attr('disabled', 'disabled');
+    $("#form-anuncio").submit();
+  }
+
+  </script>
+
+  <h1>Crear nuevo anuncio</h1>  
+  <form action="{{ path('crear-anuncio')}}" method="POST" id="form-anuncio">    
+    <div class="form-group">
+        <label for:"_fecha-ini">*Fecha de inicio:</label>    
+        <label for:"_fecha-ini" class="text-danger font-weight-bold">
+        {% if error is not empty and error.fechaIni == 0 %}
+            Ingresar fecha de inicio del evento que se anuncia.
+        {% endif %}
+        </label>
+        <input type="date" class="form-control" name="_fecha-ini" placeholder="Fecha de inicio" value={{ datos.fechaIni }}>                    
+    </div>
+    <div class="form-group">
+        <label for:"_fecha-fin">*Fecha final:</label>
+        <label for:"_fecha-fin" class="text-danger font-weight-bold">
+        {% if error is not empty and error.fechaFin == 0 %}
+            Ingresar fecha de fin del evento a anunciar.
+        {% endif %}
+        {% if error is not empty and error.diferencia < 0 %}
+            Esta fecha no puede ser anterior a la fecha de inicio.
+        {% endif %}
+        </label>
+        <input type="date" class="form-control" name="_fecha-fin" placeholder="Fecha final" value={{ datos.fechaFin }}>
+    </div>
+
+    <div class="form-group" id="div-titulo">      
+      <label for="_titulo">*Título de la notificación:</label>
+      <label for:"_titulo" class="text-danger font-weight-bold">
+        {% if error is not empty and error.titulo == 0 %}
+            Completar este campo.
+        {% endif %}
+    </label>
+      <input class="form-control" type="text" name="_titulo" value={{ datos.titulo }}>
+    </div>
+
+    <div class="form-group">
+        <label for:"_contenido">*Contenido del anuncio:</label>
+        <label for:"_contenido" class="text-danger font-weight-bold">
+        {% if error is not empty and error.contenido == 0 %}
+            Completar este campo.
+        {% endif %}
+        </label>
+        <textarea class="form-control" name="_contenido" rows="4" maxlength="250" placeholder="Contenido del anuncio" value="">{{ datos.contenido }}</textarea>
+        
+    </div>
+    <div class="form-check">      
+      <label class="form-check-label" for="check-notif">
+          <input class="form-check-input" type="checkbox" value="1" name="notif" id="check-notif">
+          Enviar notificación (opcional)
+      </label>
+    </div>    
+
+    <br/>
+    <div class="d-flex justify-content-center">
+        <button id="btn-enviar" onclick="enviar()" class="btn-lg btn-success" type="submit">Crear anuncio</button>
+    </div>    
+  </form>
+
+  <br/>
+  {% if valid == 1 %}
+    <div class="alert alert-success" role="alert">
+        <h6 class="alert-heading">Anuncio creado correctamente.</h6>
+    </div>
+  {% endif %}
+  <hr/>  
+
+  <a href="{{ path('cartelera') }}" class="btn btn-primary">Volver a la cartelera</a>          
+{% endblock %}

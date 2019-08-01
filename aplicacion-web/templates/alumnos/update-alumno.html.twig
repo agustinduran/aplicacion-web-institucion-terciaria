@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block title %}Actualizar cuenta de alumno{% endblock %}
+{% block body %}
+  <h1>Actualizar cuenta de alumno # {{ codigo }}</h1>
+  <form action="{{ path('update-alumno', {'codigo': codigo}) }}" method="POST">
+    <div class="form-group">
+      <label for:"_email">*Email:</label>
+      <label for:"_email" class="text-danger font-weight-bold">
+      {% if error is not empty and error.email == 0 %}
+         Completar este campo.
+      {% endif %}
+      </label>
+      <input type="email" class="form-control" name="_email" placeholder="Email" value={{ datos.email }}>
+    </div>
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="form-group">
+      <label for:"_cambiopass">Cambió contraseña:</label>
+      {% if datos.cambiopass == 1%}
+        <input type="checkbox" class="form-check-inline" name="_cambiopass" value=1 checked>
+      {% else %}
+        <input type="checkbox" class="form-check-inline" name="_cambiopass" value=1>
+      {% endif %}
+    </div>
+    {% endif %}
+    <div class="d-flex justify-content-center">
+      <button onclick="" class="btn-lg btn-success" type="submit">Actualizar cuenta de alumno</button>
+    </div>
+  </form>
+
+  <br/>
+  {% if valid == 1 %}
+    <div class="alert alert-success" role="alert">
+      <h6 class="alert-heading">Cuenta de alumno actualizada correctamente.</h6>
+      {% if not datos.contrasena == "" %}
+      <h6class = "alert-heading"> Nueva contraseña: {{ datos.contrasena}}</h6>
+      {% endif %}
+    </div>
+  {% endif %}
+  <hr/>
+
+  <a href="{{ path('gestion-alumnos') }}" class="btn btn-primary">Volver a gestión de cuentas de alumnos.</a>
+
+{% endblock %}

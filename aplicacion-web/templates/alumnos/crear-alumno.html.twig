@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nuevo alumno{% endblock %}
+{% block body %}
+  <script>
+  function enviar(){
+    $("#btn-enviar").html('Creando');
+    $("#btn-enviar").attr('disabled', 'disabled');
+    $("#form-alumno").submit();
+  }
+  </script>
+
+  <h1>Crear nuevo alumno</h1>
+  <form action="{{ path('crear-alumno') }}" method="POST" id="form-alumno">
+    <div class="form-group">
+      <label for:"_codigo">*Código de alumno (este campo solo puede incluir números):</label>
+      <label for:"_codigo" class="text-danger font-weight-bold">
+      {% if error is not empty and error.codigo == 0 %}
+         Completar este campo.
+      {% endif %}
+      </label>
+      <input type="number" class="form-control" name="_codigo" placeholder="Código de alumno" value={{ datos.codigo }}>
+    </div>
+    <div class="form-group">
+      <label for:"_email">*Email:</label>
+      <label for:"_email" class="text-danger font-weight-bold">
+      {% if error is not empty and error.email == 0 %}
+         Completar este campo.
+      {% endif %}
+      </label>
+      <input type="email" class="form-control" name="_email" placeholder="Email" value={{ datos.email }}>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button id="btn-enviar" onclick="enviar()" class="btn-lg btn-success" type="submit">Crear cuenta de alumno</button>
+    </div>
+  </form>
+
+  <br/>
+  {% if valid == 1 %}
+    <div class="alert alert-success" role="alert">
+      <h6 class="alert-heading">
+      Cuenta de alumno creada correctamente.<br/>
+      Código de alumno: {{ datos.codigo }}<br/>
+      Contraseña: {{ datos.contrasena }}
+      </h6>
+    </div>
+  {% endif %}
+  {% if error is not empty and error.cuenta == true %}
+    <div class="alert alert-warning" role="alert">
+      <h6 class="alert-heading">
+      Advertencia: No se pudo crear la cuenta de alumno con el código {{ datos.codigo }} debido a que ya se encuentra registrada.
+      </h6>
+    </div>
+  {% endif %}
+  {% if error is not empty and error.existeLegajo == false %}
+    <div class="alert alert-warning" role="alert">
+      <h6 class="alert-heading">
+      Advertencia: No se pudo crear la cuenta de alumno con el código {{ datos.codigo }} debido a que este no existe en la base de datos del CENT35.
+      </h6>
+    </div>
+  {% endif %}
+  <hr/>
+
+  <a href="{{ path('gestion-alumnos') }}" class="btn btn-primary">Volver a gestión de cuentas de alumno.</a>
+
+{% endblock %}

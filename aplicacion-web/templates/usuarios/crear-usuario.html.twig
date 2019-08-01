@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nuevo usuario{% endblock %}
+{% block body %}
+  <script>
+  function enviar(){    
+    $("#btn-enviar").html('Creando');
+    $("#btn-enviar").attr('disabled', 'disabled');
+    $("#form-usuario").submit();
+  }
+  </script>
+
+
+  <h1>Crear nuevo usuario</h1>
+  <form action="{{ path('crear-usuario') }}" method="POST" id="form-usuario">
+    <div class="form-group">
+      <label for:"_username">*Nombre de usuario:</label>    
+      <label for:"_username" class="text-danger font-weight-bold">
+      {% if error is not empty and error.username == 0 %}
+         Completar este campo.
+      {% endif %}
+      </label>
+      <input type="text" class="form-control" name="_username" placeholder="Nombre de usuario" value={{ datos.username }}>
+    </div>
+    <div class="form-group">
+      <label for:"_password">*Contraseña:</label>    
+      <label for:"_password" class="text-danger font-weight-bold">
+      {% if error is not empty and error.password == 0 %}
+         Completar este campo.
+      {% endif %}
+      </label>
+      <input type="password" class="form-control" name="_password" placeholder="Contraseña" value={{ datos.password }}>
+    </div>
+    <div class="form-group">
+      <label for:"_email">*Email:</label>    
+      <label for:"_email" class="text-danger font-weight-bold">
+      {% if error is not empty and error.email == 0 %}
+         Completar este campo.
+      {% endif %}
+      </label>
+      <input type="email" class="form-control" name="_email" placeholder="Email" value={{ datos.email }}>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button id="btn-enviar" onclick="enviar()" class="btn-lg btn-success" type="submit">Crear usuario</button>
+    </div>
+  </form>
+  
+  <br/>
+  {% if valid == 1 %}
+    <div class="alert alert-success" role="alert">
+      <h6 class="alert-heading">Usuario creado correctamente.</h6>
+    </div>
+  {% endif %}
+  <hr/>  
+
+  <a href="{{ path('gestion-usuarios') }}" class="btn btn-primary">Volver a gestión de usuarios.</a>   
+
+{% endblock %}

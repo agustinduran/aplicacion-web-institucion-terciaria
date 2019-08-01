@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{%  block title%}Editar ausencia docente{% endblock %}
+{% block body %}
+  <h1>Editar ausencia docente</h1>
+  <form action="{{ path('update-ausencia', { 'id': id} )}}" method="POST">
+    <div class="form-group">
+      <label for:"_docente">*Nombre del docente:</label>
+      <label for:"_docente" class="text-danger font-weight-bold">
+        {% if error is not empty and error.docente == 0 %}
+          Completar este campo.
+        {% endif %}
+      </label>
+      <input type="text" class="form-control" name="_docente" placeholder="Nombre y apellido del docente" value={{ datos.docente }}>
+    </div>
+
+    <div class="form-group">
+        <label for:"_fecha-ini">*Fecha de inicio:</label>
+        <label for:"fecha-ini" class="text-danger font-weight-bold">
+        {% if error is not empty and error.fechaIni == 0 %}
+            Ingresar fecha de inicio del período en el que el docente se ausentará.
+        {% endif %}
+        </label>
+        <input type="date" class="form-control" name="_fecha-ini" placeholder="Fecha de inicio" value={{ datos.fechaIni }}>
+    </div>
+    <div class="form-group">
+        <label for:"_fecha-fin">Fecha final (opcional, usada para indicar que un docente faltará varios días sucesivos):</label>
+        <label for:"fecha-fin" class="text-danger font-weight-bold">
+        {% if error is not empty and error.diferencia < 0 %}
+            Esta fecha no puede ser anterior a la fecha de inicio.
+        {% endif %}
+        </label>
+        <input type="date" class="form-control" name="_fecha-fin" placeholder="Fecha final" value={{ datos.fechaFin }}>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <button onclick="" class="btn-lg btn-success" type="submit">Actualizar datos de una ausencia docente</button>
+    </div>
+  </form>
+
+  <br/>
+  {% if valid == 1 %}
+    <div class="alert alert-success" role="alert">
+        <h6 class="alert-heading">Datos actualizados correctamente.</h6>
+    </div>
+  {% endif %}
+  <hr/>
+
+  <a href="{{ path('ausencias') }}" class="btn btn-primary">Volver a gestión de ausencias docente</a>
+{% endblock %}

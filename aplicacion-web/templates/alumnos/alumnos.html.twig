@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestión Alumnos{% endblock %}
+
+{% block body %}
+
+  <script>
+    // Muestra el pop-up para confirmar eliminar la cuenta con el codigo de alumno pasado.
+    function showModal(codigo){
+      var deleteCodigo = codigo;
+      var href = "{{ path('delete-alumno', { 'codigo': 'deleteCodigo' }) }}";
+      href = href.replace('deleteCodigo', deleteCodigo);
+      $("#btn-delete").attr("href", href);      
+    }
+  </script>
+
+  <h1 class="text-center">Gestión de cuentas de alumnos</h1> 
+  <h6>En esta sección se gestionan las cuentas de usuario de los alumnos que utilizan la aplicación CENT35 Móvil. </h6>
+  <br/>
+
+    {% if alumnos %}
+      <section>
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr class="bg-primary">
+              <th class="text-center align-middle" scope="col">Código de alumno</th>
+              <th class="text-center align-middle" scope="col">Email</th>
+              <th class="text-center align-middle" scope="col">Cambió contraseña</th>    
+              <th class="text-center align-middle" scope="col" colspan="2">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for alumno in alumnos %}
+              <tr>
+                <td>{{ alumno.codigo }}</td>
+                <td>{{ alumno.email }}</td>
+                <td>
+                 {% if alumno.cambiopass == 0 %}
+                 No
+                 {% else %}
+                 Si
+                 {% endif %}
+                </td>
+                <td class="text-center align-middle">
+                  <a href="{{ path('update-alumno', { 'codigo': alumno.codigo }) }}" class="btn btn-primary btn-block">Editar</a>
+                </td>                
+                <td class="text-center align-middle">
+                  <button onclick="showModal({{ alumno.codigo }})" data-toggle="modal" data-target="#modalDelete" aria-label="modalDeleteLabel" class="btn btn-danger btn-block">Borrar</button>
+                </td>
+              </tr>
+            {% endfor %}
+            <tr>
+              <td class="text-center align-middle">
+                <a href="{{ path('crear-alumno') }}" class="btn btn-lg btn-success btn-block">Crear cuenta de alumno</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>  
+      </section>
+
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalDeleteLabel">Advertencia</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="button">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>¿Confirma eliminar la cuenta del alumno?</p>
+          </div>
+          <div class="modal-footer">
+            <a href="" type="button" class="btn btn-primary" id="btn-delete">Si</a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    {% else %}
+      <h5>No se encontraron cuentas de alumno para mostrar.</h5>
+      </br>
+      <a href="{{ path('crear-alumno') }}" class="btn btn-lg btn-success">Crear cuenta de alumno</a>
+    {% endif %}
+
+{% endblock %}

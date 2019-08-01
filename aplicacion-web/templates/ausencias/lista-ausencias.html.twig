@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{%  block title%}Ausencias docente{% endblock %}
+{% block body %}
+
+  <script>
+    // Muestra el pop-up para confirmar eliminar la ausencia pasada por el id
+    function showModal(id){
+      var deleteId = id;
+      var href = "{{ path('delete-ausencia', { 'id': 'deleteId' }) }}";
+      href = href.replace('deleteId', deleteId);
+      $("#btn-delete").attr("href", href);
+    }
+  </script>
+
+  <h1 class="text-center">Listado de ausencias docente</h1>
+  </br>
+
+  {% if ausencias %}
+    <section id="cartelera">
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr class="bg-primary">
+            <th class="text-center align-middle" scope="col">Nombre del docente</th>
+            <th class="text-center align-middle" scope="col">Fecha de inicio</th>
+            <th class="text-center align-middle" scope="col">Fecha final</th>
+            <th class="text-center align-middle" scope="col">Contenido</th>
+            <th class="text-center align-middle" scope="col" colspan="2">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ausencia in ausencias %}
+            <tr>
+              <td>{{ ausencia.docente }}</td>
+              <td>{{ ausencia.fechaIni|date('Y-m-d') }}</td>
+              <td>
+                {% if ausencia.fechaFin != null %}
+                  {{ ausencia.fechaFin|date('Y-m-d') }}
+                {% else %}
+
+                {% endif %}
+              </td>
+              <td class="text-center align-middle">
+                <a href="{{ path('update-ausencia', { 'id': ausencia.id }) }}" class="btn btn-primary btn-block">Editar</a>
+              </td>
+              <td class="text-center align-middle">
+                <button onclick="showModal({{ ausencia.id }})" data-toggle="modal" data-target="#modalDelete" aria-label="modalDeleteLabel" class="btn btn-danger btn-block">Borrar</button>
+              </td>
+            </tr>
+          {% endfor %}
+          <tr>
+            <td class="text-center align-middle">
+              <a href="{{ path('crear-ausencia')}}" class="btn btn-lg btn-success btn-block">Agregar ausencia docente</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalDeleteLabel">Advertencia</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="button">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>¿Confirma eliminar la ausencia?</p>
+          </div>
+          <div class="modal-footer">
+            <a href="" type="button" class="btn btn-primary" id="btn-delete">Si</a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  {% else %}
+    <h5>No se encontraron ausencias docente para mostrar.</h5>
+    </br>
+    <a href="{{ path('crear-ausencia')}}" class="btn btn-lg btn-success">Agregar ausencia docente</a>
+  {% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig'%}
+
+{%  block title%}CENT35{% endblock %}
+{% block body %}  
+  {% if is_granted('ROLE_EMPLOYEE') %}
+    <h1>Bienvenido al panel de control del CENT35, {{ app.user.username }}</h1>
+    <p></p>
+  {% else %}
+    <h1>Bienvenido al panel de control del CENT35.</h1>
+    <p>Para continuar, inicie sesión desde la esquina superior derecha.</p>
+  {% endif %}
+{% endblock %}

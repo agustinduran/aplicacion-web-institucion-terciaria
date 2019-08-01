@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{%  block title%}Editar fecha{% endblock %}
+{% block body %}
+  <h1>Editar fecha</h1>
+  <form action="{{ path('update-fecha', { 'id': id} )}}" method="POST">
+    <div class="form-group">
+        <label for:"_fecha-ini">*Fecha de inicio:</label>
+        <label for:"fecha-ini" class="text-danger font-weight-bold">
+        {% if error is not empty and error.fechaIni == 0 %}
+            Ingresar fecha de inicio del evento que se anuncia.
+        {% endif %}
+        </label>
+        <input type="date" class="form-control" name="_fecha-ini" placeholder="Fecha de inicio" value={{ datos.fechaIni }}>
+    </div>
+    <div class="form-group">
+        <label for:"_fecha-fin">Fecha final (opcional, usado para indicar períodos como el receso invernal):</label>
+        <label for:"fecha-fin" class="text-danger font-weight-bold">
+        {% if error is not empty and error.diferencia < 0 %}
+            Esta fecha no puede ser anterior a la fecha de inicio.
+        {% endif %}
+        </label>
+        <input type="date" class="form-control" name="_fecha-fin" placeholder="Fecha final" value={{ datos.fechaFin }}>
+    </div>
+    <div class="form-group">
+        <label for:"_descripcion">*Descripcion de la fecha:</label>
+        <label for:"_descripcion" class="text-danger font-weight-bold">
+        {% if error is not empty and error.descripcion == 0 %}
+            Completar este campo.
+        {% endif %}
+        </label>
+        <textarea class="form-control" name="_descripcion" rows="4" maxlength="250" placeholder="Descripción de la fecha" value="">{{ datos.descripcion }}</textarea>
+
+    </div>
+    <div class="d-flex justify-content-center">
+        <button onclick="" class="btn-lg btn-success" type="submit">Actualizar fecha</button>
+    </div>
+  </form>
+
+  <br/>
+  {% if valid == 1 %}
+    <div class="alert alert-success" role="alert">
+        <h6 class="alert-heading">Fecha actualizada correctamente.</h6>
+    </div>
+  {% endif %}
+  <hr/>
+
+  <a href="{{ path('calendario') }}" class="btn btn-primary">Volver al calendario académico</a>
+{% endblock %}

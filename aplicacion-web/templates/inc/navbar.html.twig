@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
+  <div class="container">
+    <a href="{{ path('index')}}" class="navbar-brand">
+      <img src="img/icono-cent.png" width="30" height="auto" class="d-inline-block align-top" alt="">
+      CENT 35
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="mobile-nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mobile-nav">
+      <ul class="navbar-nav ml-auto">
+        {% if is_granted('ROLE_EMPLOYEE') %}
+          <li class="nav-item">
+            <a href="{{ path('index') }}" class="nav-link">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ path('ausencias') }}" class="nav-link">Ausencias docente</a>
+          </li>
+          <li class="nav-item">
+              <a href="{{ path('calendario') }}" class="nav-link">Calendario</a>
+          </li>
+          <li class="nav-item">
+              <a href="{{ path('cartelera') }}" class="nav-link">Cartelera</a>
+          </li>
+          <li class="nav-item">
+              <a href="{{ path('gestion-alumnos') }}" class="nav-link">Alumnos</a>
+          </li>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+          <li class="nav-item">
+              <a href="{{ path('gestion-usuarios') }}" class="nav-link">Usuarios</a>
+          </li>
+        {% endif %}
+
+
+
+        {% if is_granted('ROLE_EMPLOYEE') %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">
+            {{ app.user.username }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ path('logout')}}">Cerrar sesión</a>
+            </div>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a href="{{ path('login')}}" class="nav-link">Iniciar sesión</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

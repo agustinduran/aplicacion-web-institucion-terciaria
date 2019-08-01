@@ -1,0 +1,70 @@
+[
+
+  {
+    "nombreCarrera": "Desarrollo de Software",
+    "descripcionCarrera": "Los Técnicos Superiores en desarrollo de Software estarán capacitados para producir artefactos de software, lo que comprende su diseño detallado, construcción ya sea reutilizando elementos existentes o programándolos enteramente, verificación unitaria, depuración, optimización y mantenimiento",
+    "urlCarrera": "http://cent35.edu.ar/Carreras/DesarrolloSoftware.html"
+  },
+
+  {
+    "nombreCarrera": "Comunicación Social",
+    "descripcionCarrera": "El Técnico Superior en Comunicación Social puede actuar en los ámbitos público, privado y estatal, empresas y organizaciones de la sociedad civil en la construcción de estrategias para el desarrollo de actividades comunicacionales institucionales y/o comunitarias. Así mismo podrá desempeñarse en ámbitos vinculados a los medios, programadoras, oficinas de prensa, departamentos de comunicaciones.",
+    "urlCarrera": "http://cent35.edu.ar/Carreras/ComunicacionSocial.html"
+  },
+
+  {
+    "nombreCarrera": "Diseño Gráfico",
+    "descripcionCarrera": "El título de DISEÑADOR GRÁFICO habilita al profesional -entre otros- para actuar en los siguientes campos: Empresas y estudios de Diseño en cualquiera de sus ámbitos: corporativo, packaging, Web, editorial, multimedia...",
+    "urlCarrera": "http://cent35.edu.ar/Carreras/DisenioGrafico2.html"
+  },
+
+  {
+    "nombreCarrera": "Enfermería",
+    "descripcionCarrera": "El egresado podrá desempeñarse en el Sector Salud, Desarrollar y gestionar cuidados de enfermería para la promoción, prevención y recuperaciónde la salud hasta el nivel de complejidad intermedio con la comunidad. Brindar y gestionar cuidados de enfermería en el ámbito hospitalario hasta el nivel de complejidad intermedio. Gestionar su ámbito de trabajo ya sea en relación de dependencia o en forma independiente. Participar en estudios de investigación - acción.",
+    "urlCarrera": "http://cent35.edu.ar/Carreras/Enfermeria.html"
+  },
+
+  {
+    "nombreCarrera": "Mantenimiento Industrial",
+    "descripcionCarrera": "Este técnico está capacitado para ser competente en la identificación de problemas relevantes en la práctica del mantenimiento industrial, conservando en óptimas condiciones de funcionamiento el equipo y maquinaria eléctrica, mecánica, hidráulica, neumática y cualquier otra nueva tecnología con que cuenta una industria o institución de bienes y servicios, haciendo hincapié en las condiciones máximas y legales de higiene y seguridad en el trabajo, y teniendo en cuenta las normas de calidad estandarizadas referidas a los Sistemas de Gestión de Calidad en general y a las normas medio ambientales en particular.",
+    "urlCarrera": "http://cent35.edu.ar/Carreras/MantenimientoIndustrial.html"
+  },
+
+  {
+    "nombreCarrera": "Procesos Químicos",
+    "descripcionCarrera": "El egresado está capacitado para operar, organizar y controlar las maniobras de las plantas de procesos químicos y de cogeneración de energía y servicios auxiliares asociados, asegurando su funcionamiento, puesta en marcha y parada, verificando las condiciones de seguridad, calidad y ambientales establecidas.",
+    "urlCarrera": "http://cent35.edu.ar/Carreras/ProcesosQuimicos.html"
+  },
+
+  {
+    "nombreCarrera": "Petróleo",
+    "descripcionCarrera": "La Tecnicatura Superior en Petróleo tiene como objetivo formar Técnicos capaces de insertarse en la actividad petrolera en todos los rubros de lo que se conoce como “upstream” . Sin embargo, se los prepara también con conocimientos básicos de operaciones de procesos referidos a derivados o productos de origen hidrocarburífero.",
+    "urlCarrera": "http://cent35.edu.ar/Carreras/Petroleo.html"
+  },
+
+  {
+    "nombreCarrera": "Automatización y Robótica",
+    "descripcionCarrera": "El Técnico Superior en Automatización y Robótica podrá realizar actividades vinculadas al equipamiento y las instalaciones en edificios y obras de infraestructura urbana. Estará capacitado paradesarrollar sus actividades en empresas industriales, en empresas contratistas que brindan servicios de proyecto, montaje o mantenimiento a las empresas industriales.",
+    "urlCarrera": "http://cent35.edu.ar/Carreras/Robotica.html"
+  },
+
+  {
+    "nombreCarrera": "Gestión Ambiental",
+    "descripcionCarrera": "El egresado se encuentra capacitado para intervenir en los procesos técnicos específicos del campo de la gestión ambiental; integrar equipos profesionales multidisciplinarios e interdisciplinarios para diseñar y ejecutar planes y programas tendientes a la vigilancia ambiental, en ámbitos urbanos y rurales; coordinar actividades de protección, promoción y prevención ambiental; y participar en la programación y control del aprovechamiento, defensa y ordenación de los recursos forestales de la región.",
+    "urlCarrera": "http://cent35.edu.ar/Carreras/Ambiental.html"
+  },
+
+  {
+    "nombreCarrera": "Administración de Empresas",
+    "descripcionCarrera": "La carrera gira en torno a 4 ejes principales: Competencia en Contabilidad, que le da formación para efectuar registraciones contables, realizar balance de sumas y saldos y colaborar en la realización del Balance General y en la implementación de sistemas administrativos y contables. Competencia en aspectos laborales, conociendo aspectos referidos a la normativa laboral y del sistema seguridad social relacionados al trabajo en relación de dependencia y aspectos referidos al área de Recursos Humanos. Capacitación en aspectos legales referidos a las operaciones comerciales, en lo referido al régimen de papeles comerciales, impositivos, y de comercio exterior. También se capacitan, en el manejo de Word, Excel, calculo financiero, presupuesto, economía e ingles.",
+    "urlCarrera": "http://cent35.edu.ar/Carreras/Empresas.html"
+  },
+
+  {
+    "nombreCarrera": "Administración Pública",
+    "descripcionCarrera": "Sus ejes son: Planificar estrategias de desarrollo local e intervenir en el diseño, ejecución y evaluación de programas impulsados por el Estado, por organizaciones de la sociedad civil o de manera conjunta. Administrar y monitorear tanto el área económico-financiera como los programas, el desarrollo sociocultural y socio- productivo, elaborando informes que permitan calcular indicadores de gestión. Organizar, seleccionar y capacitar los recursos humanos interviniendo en el análisis de las características que deben reunir los aspirantes a cubrir puestos de trabajo y establecer estrategias de desarrollo personal.",
+    "urlCarrera": "http://cent35.edu.ar/Carreras/Publica.html"
+  }
+
+
+]

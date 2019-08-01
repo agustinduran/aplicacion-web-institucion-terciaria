@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block title %}Actualizar usuario{% endblock %}
+{% block body %}
+  <h1>Actualizar usuario</h1>
+  <form action="{{ path('update-usuario', {'id': id}) }}" method="POST">
+    <div class="form-group">
+      <label for:"_username">*Nombre de usuario:</label>    
+      <label for:"_username" class="text-danger font-weight-bold">
+      {% if error is not empty and error.username == 0 %}
+         Completar este campo.
+      {% endif %}
+      </label>
+      <input type="text" class="form-control" name="_username" placeholder="Nombre de usuario" value={{ datos.username }}>
+    </div>
+    <div class="form-group">
+      <label for:"_email">*Email:</label>    
+      <label for:"_email" class="text-danger font-weight-bold">
+      {% if error is not empty and error.email == 0 %}
+         Completar este campo.
+      {% endif %}
+      </label>
+      <input type="email" class="form-control" name="_email" placeholder="Email" value={{ datos.email }}>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button onclick="" class="btn-lg btn-success" type="submit">Actualizar usuario</button>
+    </div>
+  </form>
+  
+  <br/>
+  {% if valid == 1 %}
+    <div class="alert alert-success" role="alert">
+      <h6 class="alert-heading">Usuario actualizado correctamente.</h6>
+    </div>
+  {% endif %}
+  <hr/>  
+
+  <a href="{{ path('gestion-usuarios') }}" class="btn btn-primary">Volver a gestión de usuarios.</a>   
+
+{% endblock %}

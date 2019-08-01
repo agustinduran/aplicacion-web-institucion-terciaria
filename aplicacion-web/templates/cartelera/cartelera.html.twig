@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{%  block title%}Cartelera{% endblock %}
+{% block body %}
+  
+  <script>
+    // Muestra el pop-up para confirmar eliminar el anuncio pasado por el id
+    function showModal(id){
+      var deleteId = id;
+      var href = "{{ path('delete-anuncio', { 'id': 'deleteId' }) }}";
+      href = href.replace('deleteId', deleteId);
+      $("#btn-delete").attr("href", href);      
+    }
+  </script>
+
+  <h1 class="text-center">Cartelera académica</h1>
+  </br>
+
+  {% if anuncios %}
+    <section id="cartelera">
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr class="bg-primary">
+            <th class="text-center align-middle" scope="col">Fecha de publicación</th>
+            <th class="text-center align-middle" scope="col">Fecha de inicio</th>
+            <th class="text-center align-middle" scope="col">Fecha final</th>
+            <th class="text-center align-middle" scope="col">Título</th>
+            <th class="text-center align-middle" scope="col">Contenido</th>
+            <th class="text-center align-middle" scope="col" colspan="2">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for anuncio in anuncios %}
+            {% if anuncio.visible %}
+              <tr>
+                <td>{{ anuncio.fechaPubli|date('Y-m-d H:i:s') }}</td>
+                <td>{{ anuncio.fechaIni|date('Y-m-d') }}</td>
+                <td>{{ anuncio.fechaFin|date('Y-m-d') }}</td>
+                <td class=""><code class="text-dark font-weight-bold">{{ anuncio.titulo }}</code></td>
+                <td class=""><code class="text-dark font-weight-bold">{{ anuncio.contenido }}</code></td>
+                <td class="text-center align-middle">
+                  <a href="{{ path('update-anuncio', { 'id': anuncio.id }) }}" class="btn btn-primary btn-block">Editar</a>          
+                </td>
+                <td class="text-center align-middle">
+                  <button onclick="showModal({{ anuncio.id }})" data-toggle="modal" data-target="#modalDelete" aria-label="modalDeleteLabel" class="btn btn-danger btn-block">Borrar</button>
+                </td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+          <tr>
+            <td class="text-center align-middle">
+              <a href="{{ path('crear-anuncio')}}" class="btn btn-lg btn-success btn-block">Crear anuncio</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>  
+    </section>
+
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalDeleteLabel">Advertencia</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="button">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>¿Confirma eliminar el anuncio?</p>
+          </div>
+          <div class="modal-footer">
+            <a href="" type="button" class="btn btn-primary" id="btn-delete">Si</a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  {% else %}
+    <h5>No se encontraron anuncios para mostrar.</h5>
+    </br>
+    <a href="{{ path('crear-anuncio')}}" class="btn btn-lg btn-success">Crear anuncio</a>
+  {% endif %}
+  
+
+{% endblock %}

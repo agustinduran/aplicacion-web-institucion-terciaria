@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{%  block title%}Nueva fecha{% endblock %}
+{% block body %}
+  <script>
+  function enviar(){
+    $("#btn-enviar").html('Agregando');
+    $("#btn-enviar").attr('disabled', 'disabled');
+    $("#form-fecha").submit();
+  }
+  </script>
+
+  <h1>Agregar nueva fecha al calendario</h1>
+  <form action="{{ path('crear-fecha')}}" method="POST" id="form-fecha">
+    <div class="form-group">
+      <label for:"_fecha-ini">*Fecha de inicio:</label>
+      <label for:"_fecha-ini" class="text-danger font-weight-bold">
+      {% if error is not empty and error.fechaIni == 0 %}
+        Ingresar fecha de inicio del evento que se anuncia.
+      {% endif %}
+      </label>
+      <input type="date" class="form-control" name="_fecha-ini" placeholder="Fecha de inicio" value={{ datos.fechaIni }}>
+    </div>
+    <div class="form-group">
+      <label for:"_fecha-fin">Fecha final (opcional, usado para indicar períodos como el receso invernal):</label>
+      <label for:"_fecha-fin" class="text-danger font-weight-bold">
+      {% if error is not empty and error.diferencia < 0 %}
+        Esta fecha no puede ser anterior a la fecha de inicio.
+      {% endif %}
+      </label>
+      <input type="date" class="form-control" name="_fecha-fin" placeholder="Fecha final" value={{ datos.fechaFin }}>
+    </div>
+    <div class="form-group">
+      <label for:"_descripcion">*Descripción de la fecha:</label>
+      <label for:"_descripcion" class="text-danger font-weight-bold">
+      {% if error is not empty and error.descripcion == 0 %}
+        Completar este campo.
+      {% endif %}
+      </label>
+      <textarea class="form-control" name="_descripcion" rows="4" maxlength="250" placeholder="Descripción" value="">{{ datos.descripcion }}</textarea>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button id="btn-enviar" onclick="enviar()" class="btn-lg btn-success" type="submit">Agregar fecha al calendario</button>
+    </div>
+  </form>
+
+  <br/>
+  {% if valid == 1 %}
+    <div class="alert alert-success" role="alert">
+        <h6 class="alert-heading">Fecha agregada correctamente.</h6>
+    </div>
+  {% endif %}
+  <hr/>
+
+  <a href="{{ path('calendario') }}" class="btn btn-primary">Volver al calendario académico</a>
+{% endblock %}

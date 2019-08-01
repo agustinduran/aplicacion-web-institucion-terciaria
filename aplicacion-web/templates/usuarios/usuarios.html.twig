@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+{% block title %}Gestión usuarios{% endblock %}
+
+{% block body %}
+
+  <script>
+    // Muestra el pop-up para confirmar eliminar el usuariio pasado por el id
+    function showModal(id){
+      var deleteId = id;
+      var href = "{{ path('delete-usuario', { 'id': 'deleteId' }) }}";
+      href = href.replace('deleteId', deleteId);
+      $("#btn-delete").attr("href", href);
+    }
+  </script>
+
+  <h1 class="text-center">Gestión de cuentas de empleados</h1>
+  <br/>
+
+    {% if usuarios %}
+      <section>
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr class="bg-primary">
+              <th class="text-center align-middle" scope="col">Nombre de usuario</th>
+              <th class="text-center align-middle" scope="col">Email</th>
+              <th class="text-center align-middle" scope="col" colspan="2">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for usuario in usuarios %}
+              <tr>
+                <td>{{ usuario.username }}</td>
+                <td>{{ usuario.email }}</td>
+                <td class="text-center align-middle">
+                  <a href="{{ path('update-usuario', { 'id': usuario.id }) }}" class="btn btn-primary btn-block">Editar</a>
+                </td>
+                <td class="text-center align-middle">
+                  {% if usuario.role != 'ROLE_ADMIN'%}
+                  <button onclick="showModal({{ usuario.id }})" data-toggle="modal" data-target="#modalDelete" aria-label="modalDeleteLabel" class="btn btn-danger btn-block">Borrar</button>
+                  {% else %}
+                  <button class="btn btn-secondary btn-block" disabled>Borrar</button>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+            <tr>
+              <td class="text-center align-middle">
+                <a href="{{ path('crear-usuario') }}" class="btn btn-lg btn-success btn-block">Crear usuario</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalDeleteLabel">Advertencia</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="button">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>¿Confirma eliminar el usuario?</p>
+          </div>
+          <div class="modal-footer">
+            <a href="" type="button" class="btn btn-primary" id="btn-delete">Si</a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    {% else %}
+      <h5>No se encontraron usuarios para mostrar.</h5>
+      </br>
+      <a href="{{ path('crear-usuario') }}" class="btn btn-lg btn-success">Crear usuario</a>
+    {% endif %}
+
+{% endblock %}

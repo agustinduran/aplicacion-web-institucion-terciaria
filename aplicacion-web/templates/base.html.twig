@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Titulo{% endblock %}</title>
+        {% block stylesheets %}            
+            <link href="{{ asset('bootstrap.min.css')}}" rel="stylesheet"/>
+            <link href="{{ asset('estilos.css')}}" rel="stylesheet"/>
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('jquery-3.0.0.slim.min.js')}}"></script>
+            <script src="{{ asset('popper.min.js')}}"></script>
+            <script src="{{ asset('bootstrap.min.js')}}"></script>
+        {% endblock %}
+    </head>
+    <body>
+        {{ include('inc/navbar.html.twig')}}
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>                
+    </body>
+</html>
